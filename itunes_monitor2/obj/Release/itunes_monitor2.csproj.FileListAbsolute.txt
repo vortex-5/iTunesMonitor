@@ -1,0 +1,8 @@
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\bin\Release\itunes_monitor2.exe
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\bin\Release\itunes_monitor2.pdb
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\obj\Release\itunes_monitor.frmMain.resources
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\obj\Release\itunes_monitor.Properties.Resources.resources
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\obj\Release\itunes_monitor2.csproj.GenerateResource.Cache
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\obj\Release\itunes_monitor2.exe
+C:\Documents and Settings\Vortex-5\My Documents\Visual Studio 2008\Projects\itunes_monitor2\itunes_monitor2\obj\Release\itunes_monitor2.pdb

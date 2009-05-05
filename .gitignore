@@ -1,0 +1,8 @@
+Category5/bin
+Category5/obj
+Category5/Content/bin
+Category5/Content/obj
+*.user
+*.suo
+*.cache
+*.cachefile
