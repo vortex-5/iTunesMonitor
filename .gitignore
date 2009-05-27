@@ -1,7 +1,5 @@
-Category5/bin
-Category5/obj
-Category5/Content/bin
-Category5/Content/obj
+itunes_monitor2/bin
+itunes_monitor2/obj
 *.user
 *.suo
 *.cache

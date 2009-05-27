@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using iTunesLib;
 
 namespace itunes_monitor
 {
@@ -44,6 +45,13 @@ namespace itunes_monitor
             }
             tmriTunesGrow.Start();
             tmriTunesCheck.Start();
+
+            NativeWIN32.RegisterHotKeys(this.Handle);
+        }
+
+        void iTunes_OnQuittingEvent()
+        {
+            this.Close();
         }
 
         private void tmrBlink_Tick(object sender, EventArgs e)
@@ -84,6 +92,7 @@ namespace itunes_monitor
 
 				if(requestclose)
 				{
+                    NativeWIN32.UnregisterHotkeys(this.Handle);
 					this.Close();
 				}
 				else
@@ -111,6 +120,7 @@ namespace itunes_monitor
 							}
 							else 
                             {
+                                NativeWIN32.UnregisterHotkeys(this.Handle);
 								this.Close();
 							}
 						}
@@ -136,6 +146,46 @@ namespace itunes_monitor
 						Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
 					}
 				}
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    if ((int)m.WParam == (int)Keys.MediaNextTrack)
+                    {
+                        iTunesAppClass iTunes = new iTunesAppClass();
+                        iTunes.NextTrack();
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(iTunes);
+                    }
+                    else if ((int)m.WParam == (int)Keys.MediaPreviousTrack)
+                    {
+                        iTunesAppClass iTunes = new iTunesAppClass();
+                        iTunes.PreviousTrack();
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(iTunes);
+                    }
+                    else if ((int)m.WParam == (int)Keys.MediaPlayPause)
+                    {
+                        iTunesAppClass iTunes = new iTunesAppClass();
+                        iTunes.PlayPause();
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(iTunes);
+                    }
+                    else if ((int)m.WParam == (int)Keys.MediaStop)
+                    {
+                        iTunesAppClass iTunes = new iTunesAppClass();
+                        iTunes.Stop();
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(iTunes);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something seems to be wrong. The ID was: " + m.WParam.ToString());
+                    }
+                    break;
+            }
+            base.WndProc(ref m);
         }
     }
 }

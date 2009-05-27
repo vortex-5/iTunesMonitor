@@ -102,11 +102,16 @@ namespace itunes_monitor
             return Process.GetProcessesByName(_itunes).Length > 0;
         }
 
+        public static Process getiTunesProcess()
+        {
+            return Process.GetProcessesByName(_itunes)[0];
+        }
+
 
 
     	private const string _itunes = "iTunes";
 		private static readonly string[] _servicelist = {"iPodService", "AppleMobileDeviceService", "SyncServer", "distnoted", "iTunesHelper"};
-		private static readonly string[] _serviceNames ={"Apple Mobile Device", "iPod Service"};
+		private static readonly string[] _serviceNames ={"Apple Mobile Device", "iPod Service", "Bonjour Service"};
 
 		private static bool Exists(string[] list, string matchstr)
         {
