@@ -5,6 +5,7 @@ using System.Text;
 using System.Diagnostics;
 using System.ServiceProcess;
 using System.ComponentModel;
+using System.Management;
 
 
 namespace itunes_monitor
@@ -13,12 +14,31 @@ namespace itunes_monitor
     {
     	public static void startiTunesServices()
         {
+            configureiTunesServices();
+
 		    foreach (ServiceController service in ServiceController.GetServices()) {
 			    if (Exists(_serviceNames,service.ServiceName)) {
 					    if (service.Status == ServiceControllerStatus.Stopped)
 						    service.Start();
 			    } 
 		    }
+        }
+
+        public static void configureiTunesServices()
+        {
+            ManagementClass manager = new ManagementClass("Win32_Service");
+
+            foreach (ManagementObject service in manager.GetInstances())
+            {
+                if (Exists(_serviceNames, service.GetPropertyValue("Name").ToString()))
+                {
+                    ManagementBaseObject inParams = service.GetMethodParameters("ChangeStartMode");
+                    inParams["startmode"] = "Manual";
+
+                    ManagementBaseObject outParams = service.InvokeMethod("ChangeStartMode", inParams, null);
+                    //success = Convert.ToUInt16(outParams.Properties["ReturnValue"].Value);
+                }
+            }
         }
 
         public static void killiTunesServices()
